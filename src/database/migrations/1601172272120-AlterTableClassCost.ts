@@ -2,7 +2,7 @@ import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
 
 export default class AlterTableClassCost1601172272120 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.addColumn('class', new TableColumn({
+    await queryRunner.addColumn('class', new TableColumn({
       name: 'cost',
       type: 'float4',
       default: 0,
@@ -10,6 +10,6 @@ export default class AlterTableClassCost1601172272120 implements MigrationInterf
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropColumn('class', 'cost');
+    await queryRunner.dropColumn('class', 'cost');
   }
 }

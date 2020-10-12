@@ -31,6 +31,6 @@ export default class CreateTableSubjects1600632867124 implements MigrationInterf
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable('subjects');
+    await queryRunner.dropTable('subjects');
   }
 }

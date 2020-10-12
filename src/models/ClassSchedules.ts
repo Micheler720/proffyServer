@@ -1,6 +1,6 @@
 import {
   Entity, Column, PrimaryGeneratedColumn,
-  CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne,
+  CreateDateColumn, UpdateDateColumn, ManyToOne,
 } from 'typeorm';
 import Class from './Class';
 
@@ -9,18 +9,17 @@ class ClassSchedules {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  class_id: string;
-
-  @ManyToOne(() => Class, (item) => item.classSchedules)
-  @JoinColumn({ name: 'class_id' })
-  class: Class;
+  @ManyToOne(() => Class, (classe) => classe.classSchedules)
+  classe: Class;
 
   @Column()
   week_day: number;
 
   @Column()
-  time: string;
+  to: number;
+
+  @Column()
+  from: number;
 
   @CreateDateColumn()
   created_at: Date;

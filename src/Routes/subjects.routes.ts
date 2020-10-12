@@ -21,4 +21,24 @@ routes.get('/', async (request, response) => {
     return response.status(400).json({ err: `${err.message}` });
   }
 });
+routes.delete('/', async (request, response) => {
+  const { id } = request.query;
+  try {
+    const createServiceSubject = new CreateSubjectService();
+    await createServiceSubject.delete(id as string);
+    return response.json({ message: 'Subject delete success.' });
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
+});
+routes.put('/', async (request, response) => {
+  const { id, name } = request.query;
+  try {
+    const subjectService = new CreateSubjectService();
+    const subjectUpdate = await subjectService.update(id as string, name as string);
+    return response.json(subjectUpdate);
+  } catch (err) {
+    return response.status(400).json({ errr: err.message });
+  }
+});
 export default routes;

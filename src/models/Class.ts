@@ -25,8 +25,7 @@ class Class {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => ClassSchedules, (item) => item.class_id)
-  @JoinColumn({ name: 'class_id' })
+  @OneToMany(() => ClassSchedules, (classSchedules) => classSchedules.classe)
   classSchedules: ClassSchedules[];
 
   @CreateDateColumn()

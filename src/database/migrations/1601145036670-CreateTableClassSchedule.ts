@@ -49,7 +49,7 @@ export default class CreateTableClassSchedule1601145036670 implements MigrationI
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropForeignKey('class_schedules', 'class_id');
-    queryRunner.dropTable('class_schedules');
+    await queryRunner.dropForeignKey('class_schedules', 'class_id');
+    await queryRunner.dropTable('class_schedules');
   }
 }

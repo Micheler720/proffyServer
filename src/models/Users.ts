@@ -19,6 +19,12 @@ class User {
   @Column()
   password: string;
 
+  @Column('varchar', { length: 200 })
+  biografia: string;
+
+  @Column('varchar', { length: 13 })
+  whatsapp:string;
+
   @Column()
   connections: number;
 

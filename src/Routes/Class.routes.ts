@@ -4,14 +4,6 @@ import CreateClassServive from '../services/CreateClassService';
 
 const classRoutes = Router();
 classRoutes.use(ensureAuthenticated);
-/* classRoutes.get('/', async (request, response) => {
-  const { subject_id, week_day, time } = request.body;
-  try {
-
-  } catch (err) {
-    return response.json({ Error: err.message });
-  }
-}); */
 
 classRoutes.post('/', async (request, response) => {
   const {
@@ -25,6 +17,29 @@ classRoutes.post('/', async (request, response) => {
     return response.json(classStudy);
   } catch (err) {
     return response.status(400).json({ error: err.message });
+  }
+});
+classRoutes.get('/', async (request, response) => {
+  const { id } = request.query;
+  try {
+    const CreateClassService = new CreateClassServive();
+    const classUnit = await CreateClassService.ListClass(id as string);
+    return response.json(classUnit);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
+});
+
+classRoutes.get('/weekDay', async (request, response) => {
+  const { week_day, time, subject_id } = request.body;
+  try {
+    const classService = new CreateClassServive();
+    const scheduleDisponible = await classService.ListClassWeekDayHour({
+      week_day, time, subject_id,
+    });
+    return response.json(scheduleDisponible);
+  } catch (err) {
+    return response.status(400).json({ error: `${err.message}` });
   }
 });
 
